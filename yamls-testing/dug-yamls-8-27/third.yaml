@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: echo
+spec:
+  template:
+    metadata:
+      name: echo-v3
+    spec:
+      containers:
+        - image: taragu/invalid-image
+          env:
+          - name: CRASH
+            value: hi there
+  traffic:
+  - latestRevision: true
+    percent: 50
+    tag: new
+  - revisionName: echo-v2
+    percent: 50
+    tag: old

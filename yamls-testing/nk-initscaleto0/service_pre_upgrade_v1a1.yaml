@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: echo
+spec:
+  traffic:
+  - revisionName: echo
+    percent: 100
+  template:
+    # metadata:
+    #   annotations:
+    #     serving.knative.dev/checkValidityOnDeploy: "false"
+    spec:
+      containers:
+        - image: duglin/echo
+          env:
+            - name: CRASH1
+              value: bar

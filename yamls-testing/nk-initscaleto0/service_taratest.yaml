@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: echo
+  annotations:
+    serving.knative.dev/disableInitScale: "false"
+spec:
+ template:
+    spec:
+      initScale: false
+      containers:
+        - image: duglin/echo
+          env:
+            - name: CRASH1
+              value: bar

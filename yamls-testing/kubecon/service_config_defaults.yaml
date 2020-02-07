@@ -1,0 +1,24 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: echo
+spec:
+ template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "2"
+        autoscaling.knative.dev/target: "75"
+        autoscaling.knative.dev/metric: "concurrency" # or "rps" or "cpu"
+        autoscaling.knative.dev/targetUtilizationPercentage: "70"
+    spec:
+      containers:
+        - image: taragu/helloworld
+          env:
+            - name: CRASH1
+              value: bar
+          readinessProbe:
+            httpGet:
+              path: /
+            initialDelaySeconds: 3
+
+

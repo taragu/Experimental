@@ -1,0 +1,22 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: echo
+  annotations:
+    # serving.knative.dev/disableInitScale: "false"
+    # autoscaling.knative.dev/maxScale: "1"
+spec:
+ template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "2"
+    spec:
+      containers:
+        - image: duglin/echo
+          env:
+            - name: CRASH1
+              value: bar
+          readinessProbe:
+            httpGet:
+              path: /
+            initialDelaySeconds: 3

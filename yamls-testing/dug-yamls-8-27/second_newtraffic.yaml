@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: echo
+spec:
+  template:
+    metadata:
+      name: echo-v2
+    spec:
+      containers:
+        - image: taragu/helloworld-go
+  traffic:
+  - latestRevision: true
+    percent: 0
+    tag: new
+  - revisionName: echo-v1
+    percent: 100
+    tag: old

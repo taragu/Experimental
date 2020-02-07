@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: bugsvc2
+spec:
+  template:
+    spec:
+      containers:
+      - image: duglin/echo
+        env:
+          - name: CRASH
+            value: "true"
