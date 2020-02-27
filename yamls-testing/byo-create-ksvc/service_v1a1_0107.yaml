@@ -9,9 +9,9 @@ spec:
   template:
     metadata:
       name: echo-test-0107-rev1
-    # metadata:
-    #   annotations:
-    #     autoscaling.knative.dev/checkValidityOnDeploy: "false"
+    metadata:
+      annotations:
+        autoscaling.knative.dev/checkValidityOnDeploy: "false"
     spec:
       containers:
         - image: duglin/echo
