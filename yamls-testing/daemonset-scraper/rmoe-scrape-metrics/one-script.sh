@@ -10,7 +10,7 @@ export APP=$(kubectl get ksvc/echo-2 -ocustom-columns=D:.status.url --no-headers
 echo ">APP: " $APP
 
 echo "> hit the autoscaler with burst of requests"
-for i in `seq 400`; do
+for i in `seq 5000`; do
     curl -sf -H "Host: $APP" "http://$INGRESSIP?sleep=30s"&
 done
 

@@ -1,19 +1,18 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: echo-2
+  name: echo
 spec:
   traffic: # setting for byo name revision
   - latestRevision: true
     percent: 100
   template:
-    # metadata:
-    #   name: echo-test-0107-rev1
     metadata:
-      annotations:
-        autoscaling.knative.dev/minScale: "1"
+      name: echo-rev1
+    # metadata:
+    #   annotations:
+    #     serving.knative.dev/checkValidityOnDeploy: "false"
     spec:
-      containerConcurrency: 1
       containers:
         - image: duglin/echo
           env:

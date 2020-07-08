@@ -52,7 +52,7 @@ while ! curl -sf -H "Host: $APP" "http://$INGRESSIP" 1>/dev/null ; do
 done
 
 echo "> hit the autoscaler with burst of requests"
-for i in `seq 100`; do
+for i in `seq 2000`; do
     curl -sf -H "Host: $APP" "http://$INGRESSIP?sleep=10s"&
 done
 

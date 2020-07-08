@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: echo-2
+  name: echo-10
 spec:
   traffic: # setting for byo name revision
   - latestRevision: true
@@ -11,7 +11,9 @@ spec:
     #   name: echo-test-0107-rev1
     metadata:
       annotations:
-        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/initialScale: "10"
+        autoscaling.knative.dev/minScale: "20"
+        autoscaling.knative.dev/targetUtilizationPercentage: "1"
     spec:
       containerConcurrency: 1
       containers:
